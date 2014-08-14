@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">PaperStyleWidgets</string>
+    <string name="push_button">Push button!</string>
+    <string name="random_background">Random background</string>
+</resources>
