@@ -27,7 +27,7 @@ public class PaperSeekBar extends SeekBar {
 
     private float mCircleSizeCurrent;
     private float mCircleSizeNormal;
-    private float mCircleSizeSelected;
+    private float mCircleSizeTouched;
 
     public PaperSeekBar(Context context) {
         super(context);
@@ -66,7 +66,7 @@ public class PaperSeekBar extends SeekBar {
         mColorPaint.setStrokeWidth(h / 10f);
         mGrayPaint.setStrokeWidth(h / 10f);
         mCircleSizeNormal = h / 4f;
-        mCircleSizeSelected = h / 2f;
+        mCircleSizeTouched = h / 2f;
         mCircleSizeCurrent = mCircleSizeNormal;
     }
 
@@ -82,14 +82,18 @@ public class PaperSeekBar extends SeekBar {
 
     @Override
     protected synchronized void onDraw(Canvas canvas) {
-        final float width = getWidth(), height = getHeight();
-        final float cur = mCurrentProgress * width / getMax();
-        if (getProgress() != 0) {
-            canvas.drawLine(0, height / 2, cur, height / 2, mColorPaint);
+        final float gap = mCircleSizeTouched;
+        final float width = getWidth() - 2 * gap, h2 = getHeight() / 2;
+        final float cur = gap + mCurrentProgress * width / getMax();
+        if (getProgress() == 0) {
+            // Draw gray circle on left side
+            canvas.drawLine(cur + mCircleSizeCurrent, h2, gap + width, h2, mGrayPaint);
+            canvas.drawCircle(cur, h2, mCircleSizeCurrent - mGrayPaint.getStrokeWidth() / 2, mGrayPaint);
+        } else {
+            canvas.drawLine(mCircleSizeTouched, h2, cur, h2, mColorPaint);
+            canvas.drawLine(cur + mCircleSizeCurrent, h2, gap + width, h2, mGrayPaint);
+            canvas.drawCircle(cur, h2, mCircleSizeCurrent, mColorPaint);
         }
-        canvas.drawLine(cur + mCircleSizeCurrent, height / 2, width, height / 2, mGrayPaint);
-        canvas.drawCircle(cur, height / 2, mCircleSizeCurrent,
-                (getProgress() == 0) ? mGrayPaint : mColorPaint);
     }
 
     @Override
@@ -97,14 +101,14 @@ public class PaperSeekBar extends SeekBar {
         super.onTouchEvent(event);
         switch (event.getAction()) {
             case MotionEvent.ACTION_DOWN:
-                mCircleSizeCurrent = mCircleSizeSelected;
+                mCircleSizeCurrent = mCircleSizeTouched;
                 return true;
             case MotionEvent.ACTION_UP:
                 mCircleSizeCurrent = mCircleSizeNormal;
                 mAnimationHandler.sendEmptyMessage(0);
                 return true;
             case MotionEvent.ACTION_MOVE:
-                mCircleSizeCurrent = mCircleSizeSelected;
+                mCircleSizeCurrent = mCircleSizeTouched;
                 mCurrentProgress = getProgress();
                 return true;
         }
