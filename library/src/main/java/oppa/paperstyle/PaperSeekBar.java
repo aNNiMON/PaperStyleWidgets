@@ -69,6 +69,13 @@ public class PaperSeekBar extends SeekBar {
         mCircleSizeTouched = h / 2f;
         mCircleSizeCurrent = mCircleSizeNormal;
     }
+    
+    @Override
+    public void setProgress(int progress)
+    {
+        super.setProgress(progress);
+        mCurrentProgress=progress;
+    }
 
     public int getColor() {
         return mColor;
@@ -112,7 +119,7 @@ public class PaperSeekBar extends SeekBar {
                 mCurrentProgress = getProgress();
                 return true;
         }
-        return false;
+        return true;
     }
 
     protected void onDetachedFromWindow() {
@@ -132,4 +139,6 @@ public class PaperSeekBar extends SeekBar {
             }
         }
     };
+    
+    
 }
