@@ -1,4 +1,4 @@
-package oppa.paperstyle.sample;
+package com.annimon.paperstyle.sample;
 
 import android.app.Activity;
 import android.graphics.Color;
@@ -6,8 +6,8 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.SeekBar;
 import java.util.Random;
-import oppa.paperstyle.PaperButton;
-import oppa.paperstyle.PaperSeekBar;
+import com.annimon.paperstyle.PaperButton;
+import com.annimon.paperstyle.PaperSeekBar;
 
 public class MainActivity extends Activity {
 

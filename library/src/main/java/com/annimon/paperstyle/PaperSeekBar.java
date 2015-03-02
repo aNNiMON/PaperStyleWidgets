@@ -1,4 +1,4 @@
-package oppa.paperstyle;
+package com.annimon.paperstyle;
 
 import android.content.Context;
 import android.content.res.TypedArray;
