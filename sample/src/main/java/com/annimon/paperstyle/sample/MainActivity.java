@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.SeekBar;
 import java.util.Random;
 import com.annimon.paperstyle.PaperButton;
+import com.annimon.paperstyle.PaperProgressBar;
 import com.annimon.paperstyle.PaperSeekBar;
 
 public class MainActivity extends Activity {
@@ -20,6 +21,8 @@ public class MainActivity extends Activity {
         setContentView(R.layout.activity_main);
 
         randomColor(lastHsvColor);
+
+        final PaperProgressBar progressBar = (PaperProgressBar) findViewById(R.id.progressbar);
 
         final PaperButton randomButton = (PaperButton) findViewById(R.id.random_button);
         randomButton.setOnClickListener(new View.OnClickListener() {
@@ -37,6 +40,9 @@ public class MainActivity extends Activity {
                 randomColor(hsv);
                 lastHsvColor = hsv;
                 randomButton.setFocusColor(Color.HSVToColor(hsv));
+
+                progressBar.setSecondaryProgress(RND.nextInt(progressBar.getMax()));
+                progressBar.setSecondaryProgressColor(Color.HSVToColor(hsv));
             }
         });
 
@@ -53,7 +59,11 @@ public class MainActivity extends Activity {
 
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-                hueSeekBar.setColor(Color.HSVToColor(new float[] { progress, 1f, 0.8f }));
+                final int color = Color.HSVToColor(new float[] { progress, 1f, 0.8f });
+                hueSeekBar.setColor(color);
+                progressBar.setProgressColor(color);
+                progressBar.setIndeterminate(progress == 360);
+                progressBar.setProgress(progress);
             }
         });
     }

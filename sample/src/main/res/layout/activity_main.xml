@@ -57,6 +57,19 @@
             android:max="360"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
+        <com.annimon.paperstyle.PaperProgressBar
+            android:indeterminate="true"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+        <com.annimon.paperstyle.PaperProgressBar
+            android:id="@+id/progressbar"
+            android:progress="0"
+            android:secondaryProgress="180"
+            android:max="360"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            custom:pw_progressColor="#9C27B0" />
+
     </LinearLayout>
 
 </ScrollView>
