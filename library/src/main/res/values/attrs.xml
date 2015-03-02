@@ -10,4 +10,9 @@
     <declare-styleable name="PaperSeekBar">
         <attr name="pw_color" format="color" />
     </declare-styleable>
+
+    <declare-styleable name="PaperProgressBar">
+        <attr name="pw_progressColor" format="color" />
+        <attr name="pw_secondaryProgressColor" format="color" />
+    </declare-styleable>
 </resources>
