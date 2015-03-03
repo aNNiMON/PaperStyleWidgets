@@ -4,3 +4,5 @@ android {
     compileSdkVersion 21
     buildToolsVersion "21.1.2"
 }
+
+apply from: '../maven_push.gradle'
