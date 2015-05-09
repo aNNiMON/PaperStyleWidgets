@@ -1,6 +1,7 @@
 PaperStyleWidgets
 =================
 [![Maven Central](https://maven-badges.herokuapp.com/maven-central/com.annimon/paperstyle/badge.svg?style=flat)](https://maven-badges.herokuapp.com/maven-central/com.annimon/paperstyle)
+[![Build Status](https://travis-ci.org/aNNiMON/PaperStyleWidgets.svg?branch=master)](https://travis-ci.org/aNNiMON/PaperStyleWidgets)
 
 Widgets with material-like design for Android 2.2+
 
